@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Berkeley Theme Feature feature.
+ */
+
+include_once 'berkeley_theme_feature.features.inc';
