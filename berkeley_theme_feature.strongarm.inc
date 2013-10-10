@@ -484,7 +484,7 @@ function berkeley_theme_feature_strongarm() {
       'path' => 'subject',
     ),
     3 => array(
-      'solr_field' => 'spms_division_ms',
+      'solr_field' => 'spms_all_divisions_split',
       'label' => 'Division',
       'path' => 'division',
     ),
