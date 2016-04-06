@@ -152,5 +152,110 @@ function berkeley_theme_feature_views_default_views() {
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   $export['frontpage_slideshow'] = $view;
 
+  $view = new view();
+  $view->name = 'hold_queue';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'islandora_solr';
+  $view->human_name = 'Hold Queue';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Hold Queue';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'role';
+  $handler->display->display_options['access']['role'] = array(
+    3 => '3',
+  );
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '100';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'score' => 'score',
+    'dc.title' => 'dc.title',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'score' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'dc.title' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  /* Field: Islandora Solr: Score */
+  $handler->display->display_options['fields']['score']['id'] = 'score';
+  $handler->display->display_options['fields']['score']['table'] = 'islandora_solr';
+  $handler->display->display_options['fields']['score']['field'] = 'score';
+  $handler->display->display_options['fields']['score']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['score']['link_to_object'] = 0;
+  /* Field: Islandora Solr: dc.title */
+  $handler->display->display_options['fields']['dc.title']['id'] = 'dc.title';
+  $handler->display->display_options['fields']['dc.title']['table'] = 'islandora_solr';
+  $handler->display->display_options['fields']['dc.title']['field'] = 'dc.title';
+  $handler->display->display_options['fields']['dc.title']['label'] = 'Title';
+  $handler->display->display_options['fields']['dc.title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['dc.title']['link_to_object'] = 1;
+  /* Filter criterion: Islandora Solr: RELS_EXT_isManageableByUser_literal_mt */
+  $handler->display->display_options['filters']['RELS_EXT_isManageableByUser_literal_mt']['id'] = 'RELS_EXT_isManageableByUser_literal_mt';
+  $handler->display->display_options['filters']['RELS_EXT_isManageableByUser_literal_mt']['table'] = 'islandora_solr';
+  $handler->display->display_options['filters']['RELS_EXT_isManageableByUser_literal_mt']['field'] = 'RELS_EXT_isManageableByUser_literal_mt';
+  $handler->display->display_options['filters']['RELS_EXT_isManageableByUser_literal_mt']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['RELS_EXT_isManageableByUser_literal_mt']['expose']['operator_id'] = '';
+  $handler->display->display_options['filters']['RELS_EXT_isManageableByUser_literal_mt']['expose']['label'] = 'Management User';
+  $handler->display->display_options['filters']['RELS_EXT_isManageableByUser_literal_mt']['expose']['identifier'] = 'RELS_EXT_isManageableByUser_literal_mt';
+  $handler->display->display_options['filters']['RELS_EXT_isManageableByUser_literal_mt']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    8 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    4 => 0,
+    3 => 0,
+  );
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'hold-queue';
+  $translatables['hold_queue'] = array(
+    t('Master'),
+    t('Hold Queue'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Score'),
+    t('Title'),
+    t('Management User'),
+    t('Page'),
+  );
+
+  $export['hold_queue'] = $view;
+
   return $export;
 }
